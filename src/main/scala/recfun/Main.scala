@@ -14,12 +14,23 @@ object Main {
   /**
    * Exercise 1
    */
-  def pascal(c: Int, r: Int): Int = ???
+  def pascal(c: Int, r: Int): Int = 
+    if (c<0 || c>r || r<0 ) throw new IllegalArgumentException
+    else if (c==0 ||  c==r) 1
+    else pascal(c,r-1)+pascal(c-1,r-1)
 
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = {
+      def bal(level: Int, chars : List[Char]): Int= {
+        if (chars.isEmpty || level<0 ) level
+        else if (chars.head == ')') bal(level-1,chars.tail)
+        else if (chars.head == '(') bal(level+1,chars.tail)
+        else bal(level,chars.tail)
+      }
+      bal(0,chars)==0
+    }
 
   /**
    * Exercise 3
